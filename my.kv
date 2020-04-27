@@ -1,0 +1,337 @@
+<CreateAccountWindow>:
+    name: "create"
+
+    namee: namee
+    email: email
+    password: passw
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Create an Account"
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":1}
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8}
+                text: "Name: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id: namee
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13}
+                text: "Email: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13}
+                size_hint: 0.4, 0.12
+                id: email
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13*2}
+                text: "Password: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                id: passw
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.25}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Already have an Account? Log In"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.15
+            text: "Submit"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+
+<LoginWindow>:
+    name: "login"
+
+    email: email
+    password: password
+
+    FloatLayout:
+
+        Label:
+            text:"Email: "
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.9}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: email
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            pos_hint: {"x": 0.45 , "top":0.9}
+            size_hint: 0.4, 0.15
+
+        Label:
+            text:"Password: "
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.7}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: password
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            password: True
+            pos_hint: {"x": 0.45, "top":0.7}
+            size_hint: 0.4, 0.15
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.2
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.loginBtn()
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.3}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Don't have an Account? Create One"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+
+<MainWindow>:
+    n: n
+    email: email
+    created:created
+
+    FloatLayout:
+        Label:
+            id: n
+            pos_hint:{"x": 0.1, "top":0.9}
+            size_hint:0.8, 0.2
+            text: "Account Name: "
+
+        Label:
+            id: email
+            pos_hint:{"x": 0.1, "top":0.7}
+            size_hint:0.8, 0.2
+            text: "Email: "
+
+        Label:
+            id: created
+            pos_hint:{"x": 0.1, "top":0.5}
+            size_hint:0.8, 0.2
+            text: "Created: "
+
+        Button:
+            pos_hint:{"x":0.1, "top": 1.0}
+            size_hint:0.1,0.1
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+
+        Button:
+            pos_hint:{"x":0.2, "y": 0.1}
+            size_hint:0.6,0.2
+            text: "Pickup groceries?"
+            on_release:
+                app.root.current = "grocery"
+                root.manager.transition.direction = "up"
+
+        Button:
+            pos_hint:{"x":0.5, "top": 1.0}
+            size_hint:0.6,0.1
+            text: "Get help from Bodega assistant for shopping"
+
+<GroceryWindow>:
+    name: "grocery"
+    n:n
+
+    FloatLayout:
+        Label:
+            id: n
+            pos_hint:{"x": 0.1, "top":0.9}
+            size_hint:0.8, 0.2
+            text: "Hi,  "
+
+        Label:
+            pos_hint:{"x": 0.1, "top":0.8}
+            size_hint:0.8, 0.2
+            text: "How do you want your groceries to be picked? "
+
+        Button:
+            pos_hint:{"x":0.3, "top": 0.5}
+            size_hint:0.4,0.2
+            text: "Could someone pickup for me?"
+            on_release:
+                app.root.current = "plspick"
+                root.manager.transition.direction = "up"
+
+
+        Button:
+            pos_hint:{"x":0.3, "top": 0.2}
+            size_hint:0.4,0.2
+            text: "Anyone wants me to pickup?"
+            on_release:
+                app.root.current = "Ipick"
+                root.manager.transition.direction = "up"
+
+
+        Button:
+            pos_hint:{"x":0.2, "top": 1.0}
+            size_hint:0.1,0.1
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+
+
+<PlspickupWindow>:
+    name: "plspick"
+
+    FloatLayout:
+        cols: 1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                pos_hint:{"x": 0.1, "top":0.9}
+                size_hint:0.8, 0.2
+                text: "Please provide the below details to find the best ride for you: "
+            Label:
+                pos_hint:{"x": 0.0, "top":0.75}
+                size_hint:0.4, 0.2
+                text: "Start Location: "
+            TextInput:
+                id: start
+                font_size: (root.width**2 + root.height**2) / 13**4
+                multiline: False
+                pos_hint: {"x": 0.4 , "top":0.7}
+                size_hint: 0.3, 0.1
+
+            Label:
+
+                pos_hint:{"x": 0.0, "top":0.55}
+                size_hint:0.4, 0.2
+                text: "End Location: "
+            TextInput:
+                id: end
+                font_size: (root.width**2 + root.height**2) / 13**4
+                multiline: False
+                pos_hint: {"x": 0.4 , "top":0.5}
+                size_hint: 0.3, 0.1
+
+            Label:
+                pos_hint:{"x": 0.0, "top":0.35}
+                size_hint:0.4, 0.2
+                text: "Time frame: "
+            TextInput:
+                id: time
+                font_size: (root.width**2 + root.height**2) / 13**4
+                multiline: False
+                pos_hint: {"x": 0.4 , "top":0.3}
+                size_hint: 0.3, 0.1
+
+        Button:
+            pos_hint:{"x":0.4, "top": 0.1}
+            size_hint:0.2,0.1
+            text: "Submit"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+
+<IpickupWindow>:
+    name:"Ipick"
+
+    FloatLayout:
+        cols: 1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                pos_hint:{"x": 0.1, "top":0.9}
+                size_hint:0.8, 0.2
+                text: "Please provide the below details to find the best ride for you: "
+            Label:
+                pos_hint:{"x": 0.0, "top":0.75}
+                size_hint:0.4, 0.2
+                text: "Start Location: "
+            TextInput:
+                id: start
+                font_size: (root.width**2 + root.height**2) / 13**4
+                multiline: False
+                pos_hint: {"x": 0.4 , "top":0.7}
+                size_hint: 0.3, 0.1
+
+            Label:
+
+                pos_hint:{"x": 0.0, "top":0.55}
+                size_hint:0.4, 0.2
+                text: "End Location: "
+            TextInput:
+                id: end
+                font_size: (root.width**2 + root.height**2) / 13**4
+                multiline: False
+                pos_hint: {"x": 0.4 , "top":0.5}
+                size_hint: 0.3, 0.1
+
+            Label:
+                pos_hint:{"x": 0.0, "top":0.35}
+                size_hint:0.4, 0.2
+                text: "Time frame: "
+            TextInput:
+                id: time
+                font_size: (root.width**2 + root.height**2) / 13**4
+                multiline: False
+                pos_hint: {"x": 0.4 , "top":0.3}
+                size_hint: 0.3, 0.1
+
+        Button:
+            pos_hint:{"x":0.4, "top": 0.1}
+            size_hint:0.2,0.1
+            text: "Submit"
+
+
+
+
+
+
+
+
+
+
+
